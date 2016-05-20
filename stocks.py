@@ -1,8 +1,8 @@
-# - ISO - 14.144 - possibility of long-term cap gain (2 years from grant and 1 year from exercise)
-# - NSO - 19.856, no possibility
-
 import datetime
 import json
+import locale
+
+locale.setlocale(locale.LC_ALL, 'en_US')
 
 def loadJSONFromFile(filePath):
     with open(filePath) as config:
@@ -35,6 +35,8 @@ def getVested(stock, futureDate):
         potential = stock['count']
     return potential
 
+def formatNumber(number):
+    return "$" + locale.format("%d", number, grouping=True)
 
 def doExercise(stocks, exercise):
     eStock = exercise['stocks']
@@ -57,12 +59,11 @@ def doExercise(stocks, exercise):
     valueAtThatMoment = exercise['price'] * vested
 
     print "Scenario: " + exercise['name']
-    print "vested: " + str(vested)
-    print "price: " + str(exercise['price'])
-    print "payRightWay: " + str(payRightWay)
-    print "payFiscalTax: " + str(payFiscalTax)
-    print "payOverall: " + str(payRightWay + payFiscalTax) 
-    # print "valueAtThatMoment: " + str(valueAtThatMoment) 
+    print "vested: " + formatNumber(vested)
+    print "price: " + formatNumber(exercise['price'])
+    print "payRightWay: " + formatNumber(payRightWay)
+    print "payFiscalTax: " + formatNumber(payFiscalTax)
+    print "payOverall: " + formatNumber(payRightWay + payFiscalTax) 
     print ""
 
 def doSell(stocks, sell):
@@ -85,10 +86,10 @@ def doSell(stocks, sell):
         finalCash += sell['price'] * vested
 
     print "Scenario: " + sell['name']
-    print "ISO sold: " + str(isoVested)
-    print "NSO sold: " + str(nsoVested)
-    print "price: " + str(sell['price'])
-    print "cash: " + str(finalCash) 
+    print "ISO sold: " + formatNumber(isoVested)
+    print "NSO sold: " + formatNumber(nsoVested)
+    print "price: " + formatNumber(sell['price'])
+    print "cash: " + formatNumber(finalCash) 
     print ""
 
 def exerciseAllScenarios(config):

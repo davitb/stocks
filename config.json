@@ -1,0 +1,67 @@
+{
+    "stocks": [
+        {
+            "grant_date": "2015-03-12",
+            "count": 10000,
+            "type": "ISO",
+            "strike_price": 3,
+            "vesting_period": 18
+        },
+        {
+            "grant_date": "2016-09-26",
+            "count": 10000,
+            "type": "NSO",
+            "strike_price": 3,
+            "vesting_period": 30
+        }
+    ],
+    "exercise": [
+        {
+            "name": "Vested_ISO_Today",
+            "stocks": {
+                "type": "ISO",
+                "count": "AllVested"
+            },
+            "price": 5
+        },
+        {
+            "name": "3000_Vested_ISO_Options_Exercised_In_Jan2017",
+            "stocks": {
+                "type": "ISO",
+                "count": 3000
+            },
+            "date": "2017-01-01",
+            "price": 10
+        },
+        {
+            "name": "All_ISO_in_Jan2017",
+            "date": "2017-01-01",
+            "stocks": {
+                "type": "ISO",
+                "count": "AllVested"
+            },
+            "price": 20
+        },
+        {
+            "name": "Vested_NSO_in_Aug2017",
+            "date": "2017-08-01",
+            "stocks": {
+                "type": "NSO",
+                "count": "AllVested"
+            },
+            "price": 35
+        } 
+    ],
+    "sell": [
+        {
+            "name": "Mar2017_$25",
+            "date": "2017-03-01",
+            "price": 25
+        },
+        {
+            "name": "Aug2017_$35",
+            "date": "2017-08-01",
+            "price": 150000
+        }        
+    ]
+}
